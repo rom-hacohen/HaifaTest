@@ -1,0 +1,88 @@
+<html lang="en">
+    <TItle>mission MANAGER</TItle>
+  <body>
+   add ID:<input id="thisID" /><br />
+   add PROIRITY:<input id="thisPROIRITY" /><br />
+  add TITLE:<input id="thisTITLE" /><br />
+
+    <button onclick="addMissions()">Add</button>
+    <button onclick="showMissions()">SHOW ALL</button>
+    <button onclick=" removeMission()">REMOVE</button>
+    <button onclick="searchMission()">SEARCH</button>
+    <br><br><br><br><br>
+    <div  id="MiisionInfo" ></div>
+    <script>
+          let MISSIONS = [ //MISSIONS LIST
+        {ID: "BLACK BLOOD", PROIRITY: "TOP", TITLE: "assassination the president"},
+        {ID: "RAVEN", PROIRITY: "MIDDLE", TITLE: "search and rescue"},
+        {ID: "GHOST", PROIRITY: "LOW", TITLE: "steal military data"},
+      ];
+      
+      function color() {
+        for (let i = 0; i < MISSIONS.length; i++) {
+        if(MISSIONS.PROIRITY = "LOW"){
+          console.log('test');
+          document.getElementById("MiisionInfo").innerHTML = 
+          `<h3 style="color: green;">${MISSIONS[i].PROIRITY}</h3>`
+        }
+          
+        }
+      }
+      function showMissions(){ // show all missions
+        // console.log(MISSIONS);
+        for (let i = 0; i < MISSIONS.length; i++) {
+            console.log(MISSIONS[i]);
+           document.getElementById("MiisionInfo").innerHTML += 
+           `<br> ${MISSIONS[i].ID}</br>
+            <br> ${MISSIONS[i].PROIRITY}</br>
+            <br> ${MISSIONS[i].TITLE}</br> `
+           
+        }
+      }
+
+      function removeMission(){
+        console.log('test');
+        // MISSIONS.pop({ ID:thisID.value, PROIRITY: thisPROIRITY.value,TITLE:thisTITLE.value})
+        for (let i = 0; i < MISSIONS.length; i++){
+          if (MISSIONS[i].ID == thisID.valuen){
+            MISSIONS.splice(i,1)
+            updateDisplay()
+          }
+          
+        }
+      }
+            
+      function updateDisplay() { // UPDATE DISPLAY OF LIST
+        document.getElementById("MiisionInfo").innerHTML = 
+           `<br>  ${MISSIONS[i].ID}</br>
+           <br> ${MISSIONS[i].PROIRITY}</br>
+           <br> ${MISSIONS[i].TITLE}</br> `
+      }
+      
+      
+      function addMissions(){ // add mission
+         console.log('test')
+        MISSIONS.push({ ID:thisID.value, PROIRITY: thisPROIRITY.value,TITLE:thisTITLE.value})
+      }
+
+      function searchMission() { // searching if mission in data
+        let found = -1
+        for (let i = 0; i < MISSIONS.length; i++) {
+          if (MISSIONS[i].ID == thisID.value ||
+           MISSIONS[i].PROIRITY == thisPROIRITY.value ||
+            MISSIONS[i].TITLE == thisPROIRITY.value){
+              found = i
+            console.log('test');
+            found = document.getElementById("MiisionInfo").innerHTML = 
+           `<br>  ${MISSIONS[i].ID}</br>
+           <br> ${MISSIONS[i].PROIRITY}</br>
+           <br> ${MISSIONS[i].TITLE}</br>`
+          }
+          else{
+            document.getElementById("MiisionInfo").innerHTML = "data not found"
+          }
+        }
+    }
+    </script>
+      </body>
+      </html>
