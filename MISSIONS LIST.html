@@ -10,7 +10,7 @@
     <button onclick=" removeMission()">REMOVE</button>
     <button onclick="searchMission()">SEARCH</button>
     <br><br><br><br><br>
-    <div  id="MiisionInfo" ></div>
+    <div  id="MissionsInfo" ></div>
     <script>
           let MISSIONS = [ //MISSIONS LIST
         {ID: "BLACK BLOOD", PROIRITY: "TOP", TITLE: "assassination the president"},
@@ -19,33 +19,41 @@
       ];
       
       function color() {
+        let elementPROIRITY = document.getElementById("MissionsInfo")
         for (let i = 0; i < MISSIONS.length; i++) {
-        if(MISSIONS.PROIRITY = "LOW"){
-          console.log('test');
-          document.getElementById("MiisionInfo").innerHTML = 
-          `<h3 style="color: green;">${MISSIONS[i].PROIRITY}</h3>`
+        if(MISSIONS[i].PROIRITY == "TOP"){
+          console.log('C');
+          elementPROIRITY.style.color = 'red'
         }
-          
-        }
+        else if (MISSIONS[i].PROIRITY == "MIDDLE") {
+            elementPROIRITY.style.color = 'yellow'
+          }
+          else{
+            elementPROIRITY.style.color = 'green'
+          }
       }
+        }
+      
       function showMissions(){ // show all missions
         // console.log(MISSIONS);
         for (let i = 0; i < MISSIONS.length; i++) {
             console.log(MISSIONS[i]);
-           document.getElementById("MiisionInfo").innerHTML += 
+           document.getElementById("MissionsInfo").innerHTML += 
            `<br> ${MISSIONS[i].ID}</br>
             <br> ${MISSIONS[i].PROIRITY}</br>
             <br> ${MISSIONS[i].TITLE}</br> `
+            // debugger
            
         }
       }
 
       function removeMission(){
-        console.log('test');
+        // debugger
         // MISSIONS.pop({ ID:thisID.value, PROIRITY: thisPROIRITY.value,TITLE:thisTITLE.value})
         for (let i = 0; i < MISSIONS.length; i++){
-          if (MISSIONS[i].ID == thisID.valuen){
+          if (MISSIONS[i].ID == thisID.value){
             MISSIONS.splice(i,1)
+            console.log(MISSIONS);
             updateDisplay()
           }
           
@@ -53,35 +61,55 @@
       }
             
       function updateDisplay() { // UPDATE DISPLAY OF LIST
-        document.getElementById("MiisionInfo").innerHTML = 
+        for (let i = 0; i < MISSIONS.length; i++) 
+        document.getElementById("MissionsInfo").innerHTML += 
            `<br>  ${MISSIONS[i].ID}</br>
            <br> ${MISSIONS[i].PROIRITY}</br>
            <br> ${MISSIONS[i].TITLE}</br> `
+           
       }
       
       
       function addMissions(){ // add mission
          console.log('test')
         MISSIONS.push({ ID:thisID.value, PROIRITY: thisPROIRITY.value,TITLE:thisTITLE.value})
+        updateDisplay()
       }
 
       function searchMission() { // searching if mission in data
-        let found = -1
         for (let i = 0; i < MISSIONS.length; i++) {
-          if (MISSIONS[i].ID == thisID.value ||
-           MISSIONS[i].PROIRITY == thisPROIRITY.value ||
-            MISSIONS[i].TITLE == thisPROIRITY.value){
-              found = i
+          if (MISSIONS[i].ID == thisID.value){   
             console.log('test');
-            found = document.getElementById("MiisionInfo").innerHTML = 
+             document.getElementById("MissionsInfo").innerHTML = 
            `<br>  ${MISSIONS[i].ID}</br>
            <br> ${MISSIONS[i].PROIRITY}</br>
            <br> ${MISSIONS[i].TITLE}</br>`
+           color()
+           break;
+          } 
+          else if (MISSIONS[i].PROIRITY == thisPROIRITY.value) {
+            console.log('test');
+            document.getElementById("MissionsInfo").innerHTML = 
+           `<br>  ${MISSIONS[i].ID}</br>
+           <br> ${MISSIONS[i].PROIRITY}</br>
+           <br> ${MISSIONS[i].TITLE}</br>`
+           color()
+           break;
           }
-          else{
-            document.getElementById("MiisionInfo").innerHTML = "data not found"
+          else if (MISSIONS[i].TITLE == thisTITLE.value) {
+            console.log('test');
+            document.getElementById("MissionsInfo").innerHTML = 
+           `<br>  ${MISSIONS[i].ID}</br>
+           <br> ${MISSIONS[i].PROIRITY}</br>
+           <br> ${MISSIONS[i].TITLE}</br>`
+           color()
+           break;
           }
+        else {
+            document.getElementById("MissionsInfo").innerHTML = "data not found"
         }
+        
+       }
     }
     </script>
       </body>
